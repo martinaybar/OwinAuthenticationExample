@@ -67,7 +67,7 @@ namespace OwinAuthenticationExample.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> TryAuthorize()
         {
             return View();
@@ -126,7 +126,7 @@ namespace OwinAuthenticationExample.Controllers
 
             foreach (var item in roles)
             {
-                claims.Add(new Claim("Roles", item));
+                claims.Add(new Claim(ClaimTypes.Role, item));
             }
             foreach (var item in groups)
             {
